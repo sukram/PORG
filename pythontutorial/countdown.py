@@ -1,3 +1,4 @@
+# coding=utf-8
 """
 Dieses Programm führt 4 verschiedene Countdowns aus.
 Die Art des Countdowns wird über eine an den Countdown angehängten
