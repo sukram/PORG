@@ -45,7 +45,7 @@ class Message_handler(object):
         if command[0] == "register":
             # Save new user in the accountdada-save-file on the harddisk of the server
             account_file = open("accounts.sav","a")
-            account_file.write(command[1]+"|"+command[2]+"|user|")
+            account_file.write(command[1]+"|"+command[2]+"|user|\n")
             account_file.close()
             # Add new user to live list of accountdata.
             self.accounter.add_user(command[1], command[2], "user")
