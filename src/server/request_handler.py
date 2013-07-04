@@ -36,7 +36,8 @@ class Message_handler(object):
 
     def handle_admin(self, command):
         """Handles all commands from admins"""
-        command = command.split()
+        if type(command) != list:
+            command = command.split()
         #shutdown-command
         if command[0] == "shutdown":
             print("Shutting down server")
@@ -75,6 +76,9 @@ class Active_charlist(object):
         
         def add_char(self, character_object):
             self.charlist.append(character_object)
+
+        def delete_char(self, character_object):
+            self.charlist.remove(character_object)
 
         def get_chars(self):
             return self.charlist
