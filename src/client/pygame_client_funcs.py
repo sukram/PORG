@@ -30,11 +30,13 @@ def input(events, socket):
                 pass        
             else:
                 socket.send(("position " + direction).encode('utf-8'))
-                active_chars = socket.recv(1024).decode().split("#")
-                character_list = list()
-                del active_chars[-1]
-                for line in active_chars:
-                    character = line.split("|")
-                    character_list.append(character)
-                for character in character_list:
-                    print("Character ",character[0]," on field (",character[1],"/",character[2],")")
+                
+def get_screendata(socket):
+    socket.send("screendata".encode('utf-8'))
+    active_chars = socket.recv(1024).decode().split("#")
+    character_list = list()
+    del active_chars[-1]
+    for line in active_chars:
+        character = line.split("|")
+        character_list.append(character)
+    return character_list

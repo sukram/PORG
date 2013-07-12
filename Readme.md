@@ -49,6 +49,7 @@ This is the client a player uses to access the server
 Later this client and his side classes should handle the physics of the game to save the server from workload.
 Currently registered users: Name "Testuser" password "Test"
 The user can move his character with pressing of "w","a","s" and "d" after login(common wasd-controls)
+"Esc" exits the program.
 
 ==shutdown_script==
 This is a short script which logs in as admin and shutdowns the server.

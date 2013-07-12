@@ -1,5 +1,5 @@
 import pygame, sys,os
-import pygame_client_funcs
+import pygame_client_funcs, pygame_client_classes
 import socket
 from pygame.locals import * 
 
@@ -28,11 +28,17 @@ try:
     window = pygame.display.set_mode((468, 60)) 
     pygame.display.set_caption('PORG Client') 
     screen = pygame.display.get_surface() 
+    clock = pygame.time.Clock()
 
     pygame.display.flip() 
 
     while True: 
-       events = pygame.event.get()
-       pygame_client_funcs.input(events, porg_socket) 
+        clock.tick(30)
+        events = pygame.event.get()
+        pygame_client_funcs.input(events, porg_socket)
+        character_list = pygame_client_funcs.get_screendata(porg_socket)
+        for character in character_list:
+            print("Character ",character[0]," on field (",character[1],"/",character[2],")")
+ 
 finally:
     porg_socket.close()

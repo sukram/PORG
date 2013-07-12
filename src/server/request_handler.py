@@ -27,12 +27,13 @@ class Message_handler(object):
                 walking_char_pos[1] -= 1
             elif(request[1] == "d"):
                 walking_char_pos[0] += 1
-        #Return a list of all updated movements.
-        active_chars = ""
-        for char in self.active_charlist.get_chars():
-            active_chars += char.get_user().get_username()+"|"+str(char.get_position()[0])+"|"+str(char.get_position()[1])+"#"
-        active_chars += "%"
-        return active_chars
+        if request[0] == "screendata":
+            #Return a list of all updated movements.
+            active_chars = ""
+            for char in self.active_charlist.get_chars():
+                active_chars += char.get_user().get_username()+"|"+str(char.get_position()[0])+"|"+str(char.get_position()[1])+"#"
+            active_chars += "%"
+            return active_chars
 
     def handle_admin(self, command):
         """Handles all commands from admins"""

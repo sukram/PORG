@@ -69,16 +69,19 @@ class Server_environment(object):
                     loggedin_chars.delete_char(local_char)
                     print("[%s] closed connection" % client_address)
                     break
+
+                if message == "screendata":
+                    client_message = message_handler.handle_request(message, logged_user)
+                    self.request.send(client_message.encode('utf-8'))
+
                 #Start admin_handler for special usergroup "su"
                 if logged_user.get_usergroup() == "su":
                     message_handler.handle_admin(message)
                     if message == "shutdown":
                         break
                 #Otherwise start the normal request_handler
-                else : 
-                    client_message = message_handler.handle_request(message, logged_user)
-                    self.request.send(client_message.encode('utf-8'))
-
+                else: 
+                    message_handler.handle_request(message, logged_user)
 
     def start_server(self):
         """ Starts Server and keeps him live until shutdown() command
