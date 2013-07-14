@@ -24,5 +24,6 @@ try:
     while message != "exit":
         message = input("Command:")
         porg_socket.send(message.encode('utf-8'))
+        print(porg_socket.recv(1024).decode())
 finally:
     porg_socket.close()

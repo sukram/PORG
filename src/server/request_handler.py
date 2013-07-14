@@ -20,13 +20,13 @@ class Message_handler(object):
             walking_char_pos = walking_char.get_position()
             #Update the position depending on his command (wasd-controls)
             if(request[1] == "w"):
-                walking_char_pos[1] += 1
+                walking_char_pos[1] += 50
             elif(request[1] == "a"):
-                walking_char_pos[0] -= 1
+                walking_char_pos[0] -= 50
             elif(request[1] == "s"):
-                walking_char_pos[1] -= 1
+                walking_char_pos[1] -= 50
             elif(request[1] == "d"):
-                walking_char_pos[0] += 1
+                walking_char_pos[0] += 50
         if request[0] == "screendata":
             #Return a list of all updated movements.
             active_chars = ""

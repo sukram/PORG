@@ -23,12 +23,19 @@ try:
         else:
             print("Welcome on the PORG-server,",user)
             my_position = [0,0]
+
     pygame.init() 
 
-    window = pygame.display.set_mode((468, 60)) 
+    window = pygame.display.set_mode((600, 600)) 
     pygame.display.set_caption('PORG Client') 
     screen = pygame.display.get_surface() 
     clock = pygame.time.Clock()
+
+
+    background = pygame.Surface(screen.get_size())
+    background = background.convert()
+    background.fill((250, 250, 250))
+    screen.blit(background, (0, 0))
 
     pygame.display.flip() 
 
@@ -37,8 +44,13 @@ try:
         events = pygame.event.get()
         pygame_client_funcs.input(events, porg_socket)
         character_list = pygame_client_funcs.get_screendata(porg_socket)
-        for character in character_list:
-            print("Character ",character[0]," on field (",character[1],"/",character[2],")")
+        allsprites = pygame_client_funcs.update_screen(character_list)
+        screen.blit(background, (0, 0))
+        print(allsprites)
+        allsprites.update()
+        allsprites.draw(screen)
+        pygame.display.flip()
+
  
 finally:
     porg_socket.close()
